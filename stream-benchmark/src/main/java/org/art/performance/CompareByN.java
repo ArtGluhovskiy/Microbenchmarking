@@ -31,14 +31,54 @@
 
 package org.art.performance;
 
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.infra.Blackhole;
 
-public class MyBenchmark {
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
 
-    @Benchmark
-    public void testMethod() {
-        // This is a demo/sample template for building your JMH benchmarks. Edit as needed.
-        // Put your benchmark code here.
+import static java.util.stream.Collectors.toList;
+
+@State(Scope.Benchmark)
+public class CompareByN {
+
+    @Param({"1", "10", "100", "1000", "10000", "1000000"})
+    public int N;
+
+    private final int payload = 50;
+    private List<Integer> integerList;
+
+    @Setup(Level.Trial)
+    public void setUp() {
+        integerList = IntStream.range(0, N).boxed().collect(toList());
     }
 
+    @Benchmark
+    public void iterative(Blackhole bh) {
+        for (Integer i : integerList) {
+            Blackhole.consumeCPU(payload);
+            bh.consume(i);
+        }
+    }
+
+    @Benchmark
+    public Optional<Integer> sequential() {
+        return integerList.stream()
+                .filter(l -> {
+                    Blackhole.consumeCPU(payload);
+                    return false;
+                })
+                .findFirst();
+    }
+
+    @Benchmark
+    public Optional<Integer> parallel() {
+        return integerList.parallelStream()
+                .filter(l -> {
+                    Blackhole.consumeCPU(payload);
+                    return false;
+                })
+                .findFirst();
+    }
 }
