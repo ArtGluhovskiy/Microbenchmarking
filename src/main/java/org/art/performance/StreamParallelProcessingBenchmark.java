@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
 
-@State(Scope.Benchmark)
+@State(Scope.Thread)
 public class StreamParallelProcessingBenchmark {
 
     @Param({"1", "10", "100", "1000", "10000", "1000000"})

@@ -12,6 +12,7 @@ import java.util.Scanner;
  * Launches a benchmark from the 'main' method.
  * Available benchmark IDs:
  * 'StreamParallelProcessingBenchmark' - 1
+ * 'ForkJoinCountedCompleterVsRecursiveBenchmark' - 2
  */
 public class BenchmarkLauncher {
 
@@ -39,6 +40,10 @@ public class BenchmarkLauncher {
             case 1:
                 System.out.println("'StreamParallelProcessingBenchmark' is running.");
                 clazz = StreamParallelProcessingBenchmark.class;
+                break;
+            case 2:
+                System.out.println("'ForkJoinCountedCompleterVsRecursiveBenchmark' is running.");
+                clazz = ForkJoinCountedCompleterVsRecursiveBenchmark.class;
                 break;
             default:
                 System.out.println("Wrong Benchmark ID!");
