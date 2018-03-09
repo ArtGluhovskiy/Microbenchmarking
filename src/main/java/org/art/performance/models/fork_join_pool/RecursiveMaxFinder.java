@@ -9,13 +9,13 @@ import java.util.concurrent.RecursiveTask;
 /**
  * Finds the max element in the array via Recursive Task API.
  */
-public class CustomRecursiveMaxFinder extends RecursiveTask<Integer> {
+public class RecursiveMaxFinder extends RecursiveTask<Integer> {
 
     private int[] array;
     private int lo;
     private int hi;
 
-    public CustomRecursiveMaxFinder(int[] array, int lo, int hi) {
+    public RecursiveMaxFinder(int[] array, int lo, int hi) {
         this.array = array;
         this.lo = lo;
         this.hi = hi;
@@ -39,10 +39,10 @@ public class CustomRecursiveMaxFinder extends RecursiveTask<Integer> {
         return result;
     }
 
-    private Collection<CustomRecursiveMaxFinder> createSubtasks(int lo, int hi, int mid) {
-        List<CustomRecursiveMaxFinder> dividedTasks = new ArrayList<>();
-        CustomRecursiveMaxFinder right = new CustomRecursiveMaxFinder(array, lo, mid);
-        CustomRecursiveMaxFinder left = new CustomRecursiveMaxFinder(array, mid, hi);
+    private Collection<RecursiveMaxFinder> createSubtasks(int lo, int hi, int mid) {
+        List<RecursiveMaxFinder> dividedTasks = new ArrayList<>();
+        RecursiveMaxFinder right = new RecursiveMaxFinder(array, lo, mid);
+        RecursiveMaxFinder left = new RecursiveMaxFinder(array, mid, hi);
         dividedTasks.add(right);
         dividedTasks.add(left);
         return dividedTasks;

@@ -13,6 +13,8 @@ import java.util.Scanner;
  * Available benchmark IDs:
  * 'StreamParallelProcessingBenchmark' - 1
  * 'ForkJoinCountedCompleterVsRecursiveBenchmark' - 2
+ *
+ * 'Codewars_TwoToOneBenchmark' - 20
  */
 public class BenchmarkLauncher {
 
@@ -29,8 +31,12 @@ public class BenchmarkLauncher {
 
     private static int getBenchmarkId() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter Benchmark ID: <Integer value>:");
+        System.out.println("Enter a Benchmark ID: <Integer value>:");
         return scanner.nextInt();
+    }
+
+    private static void printBenchmarkHelloMessage(Class<?> clazz) {
+        System.out.println("' " + clazz.getSimpleName() + "' is running.");
     }
 
     public static void main(String[] args) throws RunnerException {
@@ -38,18 +44,20 @@ public class BenchmarkLauncher {
         Class<?> clazz;
         switch (benchmarkId) {
             case 1:
-                System.out.println("'StreamParallelProcessingBenchmark' is running.");
                 clazz = StreamParallelProcessingBenchmark.class;
                 break;
             case 2:
-                System.out.println("'ForkJoinCountedCompleterVsRecursiveBenchmark' is running.");
                 clazz = ForkJoinCountedCompleterVsRecursiveBenchmark.class;
+                break;
+            case 20:
+                clazz = Codewars_TwoToOneBenchmark.class;
                 break;
             default:
                 System.out.println("Wrong Benchmark ID!");
                 clazz = null;
         }
         if (clazz != null) {
+            printBenchmarkHelloMessage(clazz);
             runBenchmark(clazz);
         }
     }

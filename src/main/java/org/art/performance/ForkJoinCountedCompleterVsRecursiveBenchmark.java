@@ -1,7 +1,7 @@
 package org.art.performance;
 
 import org.art.performance.models.fork_join_pool.CountedCompleterMaxFinder;
-import org.art.performance.models.fork_join_pool.CustomRecursiveMaxFinder;
+import org.art.performance.models.fork_join_pool.RecursiveMaxFinder;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.Arrays;
@@ -31,7 +31,7 @@ public class ForkJoinCountedCompleterVsRecursiveBenchmark {
 
     @Benchmark
     public Integer findMaxRecursiveTask() {
-        CustomRecursiveMaxFinder recursiveMaxFinder = new CustomRecursiveMaxFinder(array, 0, array.length);
+        RecursiveMaxFinder recursiveMaxFinder = new RecursiveMaxFinder(array, 0, array.length);
         return recursiveMaxFinder.compute();
     }
 
