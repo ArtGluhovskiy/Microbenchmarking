@@ -14,10 +14,10 @@ import java.util.Random;
 @State(Scope.Thread)
 public class ForkJoinCountedCompleterVsRecursiveBenchmark {
 
-    int[] array;
+    private int[] array;
 
     @Param({"100"})
-    int k;
+    private int k;
 
     @Setup(Level.Trial)
     public void setUp() {

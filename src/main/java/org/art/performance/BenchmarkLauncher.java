@@ -13,7 +13,7 @@ import java.util.Scanner;
  * Available benchmark IDs:
  * 'StreamParallelProcessingBenchmark' - 1
  * 'ForkJoinCountedCompleterVsRecursiveBenchmark' - 2
- *
+ * 'FibonacciMemoizationBenchmark' - 3
  * 'Codewars_TwoToOneBenchmark' - 20
  */
 public class BenchmarkLauncher {
@@ -48,6 +48,9 @@ public class BenchmarkLauncher {
                 break;
             case 2:
                 clazz = ForkJoinCountedCompleterVsRecursiveBenchmark.class;
+                break;
+            case 3:
+                clazz = FibonacciMemoizationBenchmark.class;
                 break;
             case 20:
                 clazz = Codewars_TwoToOneBenchmark.class;

@@ -13,14 +13,15 @@ import static java.util.stream.Collectors.toList;
 public class StreamParallelProcessingBenchmark {
 
     @Param({"1", "10", "100", "1000", "10000", "1000000"})
-    public int N;
+    private int n;
 
     private final int payload = 50;
+
     private List<Integer> integerList;
 
     @Setup(Level.Trial)
     public void setUp() {
-        integerList = IntStream.range(0, N).boxed().collect(toList());
+        integerList = IntStream.range(0, n).boxed().collect(toList());
     }
 
     @Benchmark

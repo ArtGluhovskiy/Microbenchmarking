@@ -12,8 +12,9 @@ import org.openjdk.jmh.annotations.State;
 @State(Scope.Thread)
 public class Codewars_TwoToOneBenchmark {
 
-    String s1 = "dskiglmccekiiifkdllgdksuudfjsdkcmjruj";
-    String s2 = "dkfieifglodufnccnd";
+    private String s1 = "dskiglmccekiiifkdllgdksuudfjsdkcmjruj";
+
+    private String s2 = "dkfieifglodufnccnd";
 
     @Benchmark
     public String getStringMethod1() {
